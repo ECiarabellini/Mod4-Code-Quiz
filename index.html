@@ -16,12 +16,42 @@
             <h2>Coding Quiz Challenge</h2>
             <p>Try to answer the following code-related questions within the time limit.</p>
             <p>Keep in mind that incorrect answers will penalize your score/time by 10 seconds!</p>
-            <button id="button-start-quiz">Start Quiz</button>
+            <button id="button-start-quiz" class="action">Start Quiz</button>
         </section>
     
+        <section id="quiz-card">
+            <h2 id="question">Question question question</h2>
+            <ul>
+                <li><button class="answer">1. answer</button></li>
+                <li><button class="answer">2. answer</button></li>
+                <li><button class="answer">3. answer</button></li>
+                <li><button class="answer">4. answer</button></li>
+            </ul>          
+        </section>
     
+        <section id="complete">
+            <h2 id="all-done">All done!</h2>
+            <div>Your final score is x.</div>
+            <form action="submit" id="high-score-submit">
+                <label for="initials">Enter initials:</label>
+                <input type="text" id="initials" name="initials">
+                <button id="button-submit" class="action">Submit</button>
+            </form>
+        </section>
+
+        <section id="high-scores">
+            <h2>High scores</h2>
+            <div id="score-board">1. EC 100 </div>
+            <div id="actions">
+                <button class="action">Go back</button>
+                <button class="action">Clear high scores</button>
+            </div>
+        </section>
     
-    
+        <section id="feedback">
+            <hr>
+            <div id="feedback-text">Correct!</div>
+        </section>
     
     
     </main>
