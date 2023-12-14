@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid purple;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    font-size: 200%;
+}
+
+#button-highscores{
+    border: none;
+    background-color: white;
+    color: magenta;
+    font-size: 150%;
+}
+
+main{
+    align-self: center;
+    height: 60vh;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
