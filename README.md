@@ -19,7 +19,7 @@ The user clicks "Start Quiz" to begin. The application then cycles through quest
 ![high-scores](screenshots/high-scores.png)
 
 ## Credits
-Final webpage design mockup provided via screenshots from the University of Michigan Coding Bootcamp.
+Final webpage design mockup provided via screenshots from the University of Michigan Coding Bootcamp. ChatGPT wrote the quiz questions/answers, and all the code is my own.
 
 ## License
 MIT License
