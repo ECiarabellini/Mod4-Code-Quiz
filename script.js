@@ -1,5 +1,3 @@
-// lose 10 secs if wrong
-
 var timer = document.getElementById("timer");
 var startCard = document.getElementById("start");
 var buttonStartQuiz = document.getElementById("button-start-quiz");
@@ -14,8 +12,18 @@ var optionButtons = document.querySelectorAll('.option');
 var feedbackSection = document.getElementById("feedback");
 var feedbackText = document.getElementById("feedback-text");
 var finalScore = document.getElementById("final-score");
+var initialsField = document.getElementById("initials");
+var submitScore = document.getElementById("high-score-submit");
+var highScoresPage = document.getElementById("high-scores");
+var viewHighScores = document.getElementById("button-highscores");
+var buttonGoBack = document.getElementById("go-back");
+var scoreBoard = document.getElementById("score-board");
+var buttonClearScores = document.getElementById("clear-scores");
 
 function startQuiz(){
+    score = 0;
+    questionCount = 0;
+    timeLeft = 75;
     startCard.style.display = "none";
     quizCard.style.display = "block";
     quizTimer();
@@ -27,13 +35,16 @@ function quizTimer() {
       if (timeLeft > 0) {
         timer.textContent = "Time: " + timeLeft;
         timeLeft--;
-      } else {
+      } else if (timeLeft = -1){   //timeLeft is set to -1 when click View High Scores
+            clearInterval(timeInterval);
+            timer.textContent = "Time: 0";
+      }
+      else {
         clearInterval(timeInterval);
         endGame();
       }
     }, 1000);
 }
-
 
 function showQuestion(quest) {
     quizQuestion.textContent = quest[0];
@@ -54,27 +65,25 @@ function showQuestion(quest) {
 
 function playGame(event) {
     questionCount++;
-    console.log("An option button was clicked: ", event.target);
     var result = event.target.getAttribute('data-feedback');
-    console.log("data-feedback result is: ", result);
     feedbackSection.style.display = "inline-block";
     if (result === 'correct'){
         score++;
         feedbackText.textContent = "Correct!"
-        console.log("increased score: ", score);
     } else {
         timeLeft = timeLeft - 10;
         feedbackText.textContent = "Wrong!"
-        console.log("score is: ", score);
     }
+    console.log("score is: ", score);
 
     optionButtons.forEach((button) => {
         button.setAttribute('data-feedback', 'incorrect');  //resets all the correct/incorrect feedback indicators to incorrect 
     });
     if (questionCount > 4) {
+        timeLeft = 0;
         endGame();
     } else {
-            showQuestion(allQs[questionCount]);  //replaces current question with the next question
+        showQuestion(allQs[questionCount]);  //replaces current question with the next question
     };
 }
 
@@ -83,7 +92,19 @@ function endGame() {
     quizCard.style.display = "none";
     complete.style.display = "block";
     finalScore.textContent = "Your final score is " + score + ".";
+    initialsField.addEventListener('input', function(){
+        feedbackSection.style.display = "none";   //makes correct/incorrect feedback disappear once initials are typed
+    });
+    submitScore.addEventListener("submit", function(event){
+        event.preventDefault();
+        var scoreRecord = score + " - " + initialsField.value.trim();
+        console.log("scoreRecord: ", scoreRecord);
+        scoreBoard.textContent = scoreRecord;
+        complete.style.display = "none";
+        highScoresPage.style.display = "block";
+    })
 }
+
 
 var q1 = ["What is the purpose of the JavaScript typeof operator?", 
 'a) To check if a variable is defined',
@@ -121,20 +142,27 @@ var q5 = ["What does the JavaScript === operator check for?",
 "3"]
 
 allQs=[q1,q2,q3,q4,q5]
-var score = 0;
-var questionCount = 0;
-var timeLeft = 500;
+var score;
+var questionCount;
+var timeLeft;
 buttonStartQuiz.addEventListener("click",startQuiz);
 optionButtons.forEach((button) => {
     button.addEventListener('click', playGame)  //run the playGame function when any option button is clicked
 })
+viewHighScores.addEventListener("click", function(){
+    timeLeft = -1;
+    startCard.style.display = "none";
+    quizCard.style.display = "none";
+    feedbackSection.style.display = "none";
+    highScoresPage.style.display = "block";
+    complete.style.display = "none";
+});
 
+buttonGoBack.addEventListener('click', function(){
+    highScoresPage.style.display = "none";
+    startCard.style.display = "block";
+});
 
-//update quiz-card contents with questions. data attributes for correct answers? 
-//once button is clicked in quiz-card, cycle to next question and update feeback
-//with correct/wrong text. Add to score total if right, subtract from timer if wrong
-// when beginning to type initials, hide feedback section 
-//when initials are submitted, save that data to the local storage and display
-// on high-scores page
-//make high scores page buttons functional.
-//high scores it's own webpage?
+buttonClearScores.addEventListener('click', function(){
+    scoreBoard.textContent = "None";
+});
