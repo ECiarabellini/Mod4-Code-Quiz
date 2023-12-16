@@ -22,16 +22,16 @@
         <section id="quiz-card">
             <h2 id="question">Question question question</h2>
             <ul>
-                <li><button class="option" id="o-1">1. answer</button></li>
-                <li><button class="option" id="o-2">2. answer</button></li>
-                <li><button class="option" id="o-3">3. answer</button></li>
-                <li><button class="option" id="o-4">4. answer</button></li>
+                <li><button class="option" data-feedback="incorrect" id="o-1">1. answer</button></li>
+                <li><button class="option" data-feedback="incorrect" id="o-2">2. answer</button></li>
+                <li><button class="option" data-feedback="incorrect" id="o-3">3. answer</button></li>
+                <li><button class="option" data-feedback="incorrect" id="o-4">4. answer</button></li>
             </ul>          
         </section>
     
         <section id="complete">
             <h2 id="all-done">All done!</h2>
-            <div>Your final score is x.</div>
+            <div id="final-score">Your final score is x.</div>
             <form action="submit" id="high-score-submit">
                 <label for="initials">Enter initials:</label>
                 <input type="text" id="initials" name="initials">
