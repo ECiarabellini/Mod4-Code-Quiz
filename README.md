@@ -19,7 +19,7 @@ The user clicks "Start Quiz" to begin. The application then cycles through quest
 ![high-scores](screenshots/high-scores.png)
 
 ## Credits
-None
+Final webpage design mockup provided via screenshots from the University of Michigan Coding Bootcamp.
 
 ## License
 MIT License
